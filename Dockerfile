@@ -6,6 +6,7 @@ COPY composer.json ./
 RUN composer install --ignore-platform-reqs
 
 FROM jfcoz/frankenphp-wordpress
+USER root
 
 # Install the opentelemetry and protobuf extensions
 RUN install-php-extensions \
@@ -20,3 +21,5 @@ COPY --from=build /app/vendor /var/www/otel
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 COPY opcache.ini /usr/local/etc/php/conf.d/
+
+USER www-data
