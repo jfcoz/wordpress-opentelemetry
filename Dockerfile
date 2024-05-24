@@ -1,7 +1,7 @@
 # From https://raw.githubusercontent.com/open-telemetry/opentelemetry-php-contrib/main/examples/instrumentation/Wordpress/autoinstrumented-wordpress.dockerfile
 
 # Pull in dependencies with composer
-FROM composer:2.7@sha256:f84b53d5fefa4a390eaf5f26de107f980269e0895d7675e2149632cac4a12c69 as build
+FROM composer:2.7@sha256:4c01e0b94ce1cf09a1f0850187231f48942dab2ab25f5bb0a34dfd6271c289b1 as build
 COPY composer.json ./
 RUN composer install --ignore-platform-reqs
 
