@@ -5,7 +5,7 @@ FROM composer:2.7@sha256:6d2b5386580c3ba67399c6ccfb50873146d68fcd7c31549f8802781
 COPY composer.json ./
 RUN composer install --ignore-platform-reqs
 
-FROM jfcoz/frankenphp-wordpress@sha256:876bcc8be2285e7936493d798849e42d809ea34956016d4ba19380843737af77
+FROM jfcoz/frankenphp-wordpress@sha256:9d67ff7149eef78a416ce09bb059d1f08ec20a60dfde9b362cc082b773d38378
 USER root
 
 # Install the opentelemetry and protobuf extensions
