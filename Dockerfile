@@ -17,7 +17,7 @@ RUN composer require \
 #    grpc/grpc \
 #    php-http/guzzle7-adapter
 
-#COPY otel.php.ini $PHP_INI_DIR/conf.d/.
+COPY otel.php.ini $PHP_INI_DIR/conf.d/.
 
 # Use the default production configuration
 #RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
