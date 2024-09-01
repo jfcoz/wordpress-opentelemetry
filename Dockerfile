@@ -2,9 +2,11 @@ FROM jfcoz/frankenphp-wordpress@sha256:0b3dabd9c37bd294a25db889e39d62db709106d39
 USER root
 
 # Install the opentelemetry and protobuf extensions
+# grpc: longuest build first, and strip debug symbols: https://github.com/grpc/grpc/issues/34278
+RUN install-php-extensions grpc \
+ && strip --strip-debug /usr/local/lib/php/extensions/*/grpc.so
 RUN install-php-extensions opentelemetry
 RUN install-php-extensions protobuf
-RUN install-php-extensions grpc
 
 # Copy in the composer vendor files and autoload.php
 #COPY --from=build /app/vendor /var/www/otel
