@@ -3,9 +3,9 @@ USER root
 
 # Install the opentelemetry and protobuf extensions
 RUN install-php-extensions \
-    protobuf \
-    grpc \
     opentelemetry
+#    protobuf \
+#    grpc \
 
 # Copy in the composer vendor files and autoload.php
 #COPY --from=build /app/vendor /var/www/otel
