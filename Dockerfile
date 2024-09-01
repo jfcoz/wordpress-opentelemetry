@@ -4,8 +4,8 @@ USER root
 # Install the opentelemetry and protobuf extensions
 RUN install-php-extensions \
     opentelemetry \
-    protobuf
-#    grpc
+    protobuf \
+    grpc
 
 # Copy in the composer vendor files and autoload.php
 #COPY --from=build /app/vendor /var/www/otel
@@ -13,9 +13,9 @@ COPY --from=composer:2.7@sha256:57000529b4609b66beeba3ebdd0ebb68b28be262c30669df
 RUN composer require \
     open-telemetry/sdk \
     open-telemetry/opentelemetry-auto-wordpress \
-    open-telemetry/exporter-otlp
-#    grpc/grpc \
-#    php-http/guzzle7-adapter
+    open-telemetry/exporter-otlp \
+    grpc/grpc \
+    php-http/guzzle7-adapter
 
 COPY otel.php.ini $PHP_INI_DIR/conf.d/.
 
