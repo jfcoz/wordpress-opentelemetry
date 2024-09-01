@@ -11,9 +11,9 @@ RUN install-php-extensions \
 #COPY --from=build /app/vendor /var/www/otel
 COPY --from=composer:2.7@sha256:57000529b4609b66beeba3ebdd0ebb68b28be262c30669dfccb31003febb245a /usr/bin/composer /usr/bin/composer
 RUN composer require \
-    open-telemetry/sdk
+    open-telemetry/sdk \
+    open-telemetry/opentelemetry-auto-wordpress
 #    open-telemetry/exporter-otlp \
-#    open-telemetry/opentelemetry-auto-wordpress \
 #    grpc/grpc \
 #    php-http/guzzle7-adapter
 
