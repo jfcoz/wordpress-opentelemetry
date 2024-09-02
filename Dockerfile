@@ -3,8 +3,8 @@ USER root
 
 # Install the opentelemetry and protobuf extensions
 # grpc: longuest build first, and strip debug symbols: https://github.com/grpc/grpc/issues/34278
-RUN install-php-extensions grpc \
- && strip --strip-debug /usr/local/lib/php/extensions/*/grpc.so
+#RUN install-php-extensions grpc \
+# && strip --strip-debug /usr/local/lib/php/extensions/*/grpc.so
 RUN install-php-extensions opentelemetry
 #RUN install-php-extensions protobuf
 
