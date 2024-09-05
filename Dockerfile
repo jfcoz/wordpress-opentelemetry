@@ -1,4 +1,4 @@
-FROM jfcoz/frankenphp-wordpress@sha256:0b3dabd9c37bd294a25db889e39d62db709106d39ee7a6a722ac4ef80efceac2
+FROM jfcoz/frankenphp-wordpress@sha256:162a004e7dba70a791780e2e0991cc7f4f840242212728ebf4f40bf1da379a5d
 USER root
 
 # Install the opentelemetry and protobuf extensions
