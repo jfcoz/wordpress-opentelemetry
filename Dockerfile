@@ -10,7 +10,7 @@ RUN install-php-extensions opentelemetry
 
 # Copy in the composer vendor files and autoload.php
 #COPY --from=build /app/vendor /var/www/otel
-COPY --from=composer:2.7@sha256:f2958e7266b750315fa7225f4613a8fbd5001841335881f24010eedcd243aa0a /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.7@sha256:8008ba4d8723edf5f3566bd94e9330a5cdff3d6125ed34a8502718f8d2289515 /usr/bin/composer /usr/bin/composer
 RUN composer require \
     open-telemetry/sdk \
     open-telemetry/opentelemetry-auto-wordpress
