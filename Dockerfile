@@ -18,7 +18,7 @@ RUN install-php-extensions opcache
 RUN install-php-extensions grpc \
  && strip --strip-debug /usr/local/lib/php/extensions/*/grpc.so
 RUN install-php-extensions opentelemetry
-#RUN install-php-extensions protobuf
+RUN install-php-extensions protobuf
 
 # Copy in the composer vendor files and autoload.php
 #COPY --from=build /app/vendor /var/www/otel
