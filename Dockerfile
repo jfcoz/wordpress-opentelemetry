@@ -20,9 +20,14 @@ RUN install-php-extensions grpc \
 RUN install-php-extensions opentelemetry
 RUN install-php-extensions protobuf
 
+RUN a2enmod rewrite
+
 # Copy in the composer vendor files and autoload.php
 #COPY --from=build /app/vendor /var/www/otel
 COPY --from=composer:2.7@sha256:57000529b4609b66beeba3ebdd0ebb68b28be262c30669dfccb31003febb245a /usr/bin/composer /usr/bin/composer
+
+USER www-data
+
 RUN composer require \
     open-telemetry/sdk \
     open-telemetry/opentelemetry-auto-wordpress \
@@ -37,6 +42,3 @@ COPY otel.php.ini $PHP_INI_DIR/conf.d/.
 
 #COPY opcache.ini /usr/local/etc/php/conf.d/
 
-RUN a2enmod rewrite
-
-USER www-data
