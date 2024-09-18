@@ -1,6 +1,8 @@
 FROM php:8.2-apache
+
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 # install the PHP extensions we need (https://make.wordpress.org/hosting/handbook/handbook/server-environment/#php-extensions)
+
 RUN install-php-extensions bcmath
 RUN install-php-extensions exif
 RUN install-php-extensions gd
@@ -15,8 +17,8 @@ RUN install-php-extensions opcache
 
 # Install the opentelemetry and protobuf extensions
 # grpc: longuest build first, and strip debug symbols: https://github.com/grpc/grpc/issues/34278
-RUN install-php-extensions grpc \
- && strip --strip-debug /usr/local/lib/php/extensions/*/grpc.so
+#RUN install-php-extensions grpc \
+# && strip --strip-debug /usr/local/lib/php/extensions/*/grpc.so
 RUN install-php-extensions opentelemetry
 RUN install-php-extensions protobuf
 
@@ -26,14 +28,15 @@ RUN a2enmod rewrite
 #COPY --from=build /app/vendor /var/www/otel
 COPY --from=composer:2.7@sha256:57000529b4609b66beeba3ebdd0ebb68b28be262c30669dfccb31003febb245a /usr/bin/composer /usr/bin/composer
 
-USER www-data
 
-RUN composer require \
-    open-telemetry/sdk \
-    open-telemetry/opentelemetry-auto-wordpress \
-    open-telemetry/exporter-otlp \
-    grpc/grpc \
-    php-http/guzzle7-adapter
+RUN mkdir /vendor \
+    && cd /vendor \
+    && composer require \
+      open-telemetry/sdk \
+      open-telemetry/opentelemetry-auto-wordpress \
+      open-telemetry/exporter-otlp \
+      php-http/guzzle7-adapter
+#    grpc/grpc \
 
 COPY otel.php.ini $PHP_INI_DIR/conf.d/.
 
@@ -42,3 +45,11 @@ COPY otel.php.ini $PHP_INI_DIR/conf.d/.
 
 #COPY opcache.ini /usr/local/etc/php/conf.d/
 
+USER www-data
+
+COPY --from=wordpress /usr/local/etc/php/conf.d/* /usr/local/etc/php/conf.d/
+COPY --from=wordpress /usr/local/bin/docker-entrypoint.sh /usr/local/bin/
+COPY --from=wordpress /usr/src/wordpress /usr/src/wordpress
+
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+CMD ["apache2-foreground"]
