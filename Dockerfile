@@ -1,6 +1,6 @@
-FROM php:8.2-apache
+FROM php:8.2-apache@sha256:77909ab7864726d7f5e96138e8b40fb0a2183dbad803ea15183776231c552416
 
-COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
+COPY --from=mlocati/php-extension-installer@sha256:4f626471edb7f87a8f00ef83f4a8eed3433e33332aa34aa830446f0fabfbe9f8 /usr/bin/install-php-extensions /usr/local/bin/
 # install the PHP extensions we need (https://make.wordpress.org/hosting/handbook/handbook/server-environment/#php-extensions)
 
 RUN install-php-extensions bcmath
@@ -47,9 +47,9 @@ COPY otel.php.ini $PHP_INI_DIR/conf.d/.
 
 USER www-data
 
-COPY --from=wordpress /usr/local/etc/php/conf.d/* /usr/local/etc/php/conf.d/
-COPY --from=wordpress /usr/local/bin/docker-entrypoint.sh /usr/local/bin/
-COPY --from=wordpress /usr/src/wordpress /usr/src/wordpress
+COPY --from=wordpress@sha256:16bca979f8f4167d06e6c62b79d1e1a50acc812bad95a2d2f7d55ae5d8107933 /usr/local/etc/php/conf.d/* /usr/local/etc/php/conf.d/
+COPY --from=wordpress@sha256:16bca979f8f4167d06e6c62b79d1e1a50acc812bad95a2d2f7d55ae5d8107933 /usr/local/bin/docker-entrypoint.sh /usr/local/bin/
+COPY --from=wordpress@sha256:16bca979f8f4167d06e6c62b79d1e1a50acc812bad95a2d2f7d55ae5d8107933 /usr/src/wordpress /usr/src/wordpress
 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 CMD ["apache2-foreground"]
