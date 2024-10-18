@@ -47,9 +47,9 @@ COPY otel.php.ini $PHP_INI_DIR/conf.d/.
 
 USER www-data
 
-COPY --from=wordpress@sha256:5e4d996ed4f9c61d9a6b107dd7a54fea8e826a5eae10efdeb10cf6e81f31f262 /usr/local/etc/php/conf.d/* /usr/local/etc/php/conf.d/
-COPY --from=wordpress@sha256:5e4d996ed4f9c61d9a6b107dd7a54fea8e826a5eae10efdeb10cf6e81f31f262 /usr/local/bin/docker-entrypoint.sh /usr/local/bin/
-COPY --from=wordpress@sha256:5e4d996ed4f9c61d9a6b107dd7a54fea8e826a5eae10efdeb10cf6e81f31f262 /usr/src/wordpress /usr/src/wordpress
+COPY --from=wordpress@sha256:77852bf7ad6940671e0e8da127e3f613515dbe5da3462652a203b76908ec0792 /usr/local/etc/php/conf.d/* /usr/local/etc/php/conf.d/
+COPY --from=wordpress@sha256:77852bf7ad6940671e0e8da127e3f613515dbe5da3462652a203b76908ec0792 /usr/local/bin/docker-entrypoint.sh /usr/local/bin/
+COPY --from=wordpress@sha256:77852bf7ad6940671e0e8da127e3f613515dbe5da3462652a203b76908ec0792 /usr/src/wordpress /usr/src/wordpress
 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 CMD ["apache2-foreground"]
