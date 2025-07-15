@@ -26,7 +26,7 @@ RUN a2enmod rewrite
 
 # Copy in the composer vendor files and autoload.php
 #COPY --from=build /app/vendor /var/www/otel
-COPY --from=composer:2.8@sha256:69d57c07ed077bc22d6e584202b6d9160f636abdb6df25c7c437ded589b3fa6c /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.8@sha256:b051e409869df856750d305ec1845d85e23c1110fc40bbf1ed7637d160a74837 /usr/bin/composer /usr/bin/composer
 
 
 RUN mkdir /vendor \
