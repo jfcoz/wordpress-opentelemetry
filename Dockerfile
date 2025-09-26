@@ -1,4 +1,4 @@
-FROM php:8.4-apache@sha256:2c308cf745592a8d17e1dd0fd87d44be472d23be081ec5c01ea31f555bc89843
+FROM php:8.4-apache@sha256:6320fa321ae17e49e6da9cf8404e49f08a6404ac39e0a7d3f91ec68fa2c0afa4
 
 COPY --from=mlocati/php-extension-installer@sha256:d2e141903b339ce765b7f760108e953aa5f93e4122c2d980f189f8922631d1d0 /usr/bin/install-php-extensions /usr/local/bin/
 # install the PHP extensions we need (https://make.wordpress.org/hosting/handbook/handbook/server-environment/#php-extensions)
