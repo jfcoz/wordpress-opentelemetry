@@ -10,7 +10,6 @@ RUN install-php-extensions intl
 RUN install-php-extensions mysqli
 RUN install-php-extensions zip
 RUN install-php-extensions imagick
-RUN install-php-extensions opcache
 
 #FROM jfcoz/frankenphp-wordpress@sha256:0b3dabd9c37bd294a25db889e39d62db709106d39ee7a6a722ac4ef80efceac2
 #USER root
