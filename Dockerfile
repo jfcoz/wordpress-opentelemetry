@@ -1,6 +1,6 @@
 FROM php:8.5-apache@sha256:434b2fa9706d6d92832aadc1508324cf832e3dd33abf0844bafd1469d3e7ee14
 
-COPY --from=mlocati/php-extension-installer@sha256:3ebe94427d3fbb0de3858a51bedf909d4ecc4764042151eb9eaf71e79cb2b97d /usr/bin/install-php-extensions /usr/local/bin/
+COPY --from=mlocati/php-extension-installer@sha256:3a33a57571103fbfecf5995f910225151ba70b45d6294a113d6565c72b7d4d43 /usr/bin/install-php-extensions /usr/local/bin/
 # install the PHP extensions we need (https://make.wordpress.org/hosting/handbook/handbook/server-environment/#php-extensions)
 
 RUN install-php-extensions bcmath
